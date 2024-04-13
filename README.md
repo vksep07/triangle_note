@@ -8,7 +8,7 @@ The project employs a clean architecture approach, with a structured folder brea
 
 ## Logo
 
-  <img src="![triangle_white_logo](https://github.com/vksep07/doctor_assesment_app/assets/16042343/ad2f73b3-e6f9-4780-9aa8-4cda42dc12f1)" alt="Triangle Note Logo" width="300"/>
+  <img src="https://github.com/vksep07/doctor_assesment_app/assets/16042343/ad2f73b3-e6f9-4780-9aa8-4cda42dc12f1" alt="Triangle Note Logo" width="300"/>
 
 
 ## Features
