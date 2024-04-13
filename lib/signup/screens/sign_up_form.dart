@@ -59,6 +59,7 @@ class _SignUpFormState extends State<SignUpForm> {
             AuthTextField(
               controller: _pinController,
               hintText: 'Enter pin',
+              maxLength: 4,
               withContainer: true,
               bgColor: Theme.of(context).primaryColorDark,
               obscureText: true,
@@ -71,6 +72,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _reEnterPinController,
               hintText: 'Reenter pin',
               withContainer: true,
+              maxLength: 4,
               bgColor: Theme.of(context).primaryColorDark,
               obscureText: true,
               onTextChanged: (value) {

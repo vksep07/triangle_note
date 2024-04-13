@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 class StringUtils {
-  String appName = "Triangle Notes";
+  String appName = "Triangle Note";
   String no_data_found = 'No Data Found';
   String login = 'LOG IN';
   String signup = 'SIGN UP';

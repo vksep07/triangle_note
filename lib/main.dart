@@ -5,7 +5,7 @@ import 'package:plateron_assignment/utils/common_widgets/custom_theme.dart';
 
 void main() {
   runApp(const CustomTheme(
-    initialThemeKey: MyThemeKeys.DARK,
+    initialThemeKey: MyThemeKeys.LIGHT,
     child: App(),
   ),);
 }

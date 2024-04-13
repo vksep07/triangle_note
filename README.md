@@ -1,4 +1,4 @@
-# Plateron Shopping Cart App  ( :smile: ) [ Ios and Android ]
+# Triangle Note App  ( :smile: ) [ Ios and Android ]
 
 "Plateron" app is to provide a comprehensive and instructive showcase of a shopping application. It spotlights fundamental e-commerce features while making use of prominent Flutter libraries and design patterns. Through this demonstration, the app serves as a valuable learning resource for developers and enthusiasts, illustrating how to build a robust and user-friendly shopping platform that encompasses essential functionalities, advanced state management, and responsive user interfaces.
 

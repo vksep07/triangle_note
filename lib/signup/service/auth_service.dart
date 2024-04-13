@@ -88,7 +88,7 @@ class AuthService {
           mobileNumber: mobileNumber,
           pin: pin,
         );
-        
+
         if (isSuccess) {
           sharedPreferenceService.setLoginStatus(isLogin: true);
           appNavigationService.pushReplacementNamed(Routes.note_screen);
@@ -139,12 +139,13 @@ class AuthService {
         _showToast('User already exist. Please login');
         return;
       } else {
-      int value=  await DatabaseHelper().addUser(
+        int value = await DatabaseHelper().addUser(
           mobileNumber: mobileNumber,
           name: name,
           pin: pin,
         );
-        if (value==1) {
+        if (value == 1) {
+          sharedPreferenceService.setLoginStatus(isLogin: true);
           appNavigationService.pushReplacementNamed(Routes.note_screen);
         } else {
           _showToast('Something went wrong');
