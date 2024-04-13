@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/signup/widgets/auth_textfield.dart';
-import 'package:plateron_assignment/signup/widgets/mobile_code_textfield.dart';
-import 'package:plateron_assignment/utils/common_util/string_utils.dart';
-import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
-import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
-import 'package:plateron_assignment/utils/constants.dart';
-import 'package:plateron_assignment/utils/extensions.dart';
+import 'package:triangle_note/signup/widgets/auth_textfield.dart';
+import 'package:triangle_note/signup/widgets/mobile_code_textfield.dart';
+import 'package:triangle_note/utils/common_util/string_utils.dart';
+import 'package:triangle_note/utils/common_util/utils_importer.dart';
+import 'package:triangle_note/utils/common_widgets/app_text_widget.dart';
+import 'package:triangle_note/utils/constants.dart';
+import 'package:triangle_note/utils/extensions.dart';
 
 class LoginForm extends StatefulWidget {
   final Function numberTextChange;

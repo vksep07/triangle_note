@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/utils/constants.dart';
+import 'package:triangle_note/utils/constants.dart';
 
 class AuthTextField extends StatelessWidget {
   final TextEditingController controller;

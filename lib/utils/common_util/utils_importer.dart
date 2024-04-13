@@ -1,4 +1,5 @@
-import 'package:plateron_assignment/utils/common_util/string_utils.dart';
+
+import 'package:triangle_note/utils/common_util/string_utils.dart';
 
 import 'colors_utils.dart';
 

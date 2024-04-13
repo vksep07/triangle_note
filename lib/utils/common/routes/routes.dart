@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:plateron_assignment/notes/models/notes_data_model.dart';
-import 'package:plateron_assignment/notes/screens/add_note_screen.dart';
-import 'package:plateron_assignment/notes/screens/notes_screen.dart';
-import 'package:plateron_assignment/notes/service/note_service.dart';
-import 'package:plateron_assignment/signup/screens/auth_screen.dart';
-import 'package:plateron_assignment/signup/service/auth_service.dart';
-import 'package:plateron_assignment/splash_screen/view/splash_screen.dart';
+import 'package:triangle_note/notes/models/notes_data_model.dart';
+import 'package:triangle_note/notes/screens/add_note_screen.dart';
+import 'package:triangle_note/notes/screens/notes_screen.dart';
+import 'package:triangle_note/notes/service/note_service.dart';
+import 'package:triangle_note/signup/screens/auth_screen.dart';
+import 'package:triangle_note/signup/service/auth_service.dart';
+import 'package:triangle_note/splash_screen/view/splash_screen.dart';
 
 class Routes {
   static const String splash = 'splash';

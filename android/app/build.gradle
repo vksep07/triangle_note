@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.plateron_assignment"
+    namespace "com.example.triangle_note"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

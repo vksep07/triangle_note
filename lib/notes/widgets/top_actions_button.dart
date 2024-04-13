@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/utils/extensions.dart';
+import 'package:triangle_note/utils/extensions.dart';
 
 class TopActionButton extends StatelessWidget {
   final Function? backButton;
@@ -22,18 +22,19 @@ class TopActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      decoration:  BoxDecoration(
-          color: Theme.of(context).primaryColor,
-        boxShadow: [
-        BoxShadow(
-          color: Theme.of(context).primaryColorDark,
-          offset:const  Offset(0, 2.0),
-          blurRadius: 4.0,
-        )
-      ]),
-      child: SafeArea(
+    return SafeArea(
+      child: Container(
+        decoration:  BoxDecoration(
+            color: Theme.of(context).primaryColor,
+          boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).primaryColorDark.withOpacity(0.5),
+            offset:const  Offset(0, 5),
+            blurRadius: 4,
+            spreadRadius: 0
+            
+          )
+        ]),
         child: Row(
           children: <Widget>[
             IconButton(

@@ -2,13 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:plateron_assignment/notes/models/notes_data_model.dart';
-import 'package:plateron_assignment/notes/screens/note_dialog.dart';
-import 'package:plateron_assignment/notes/service/note_service.dart';
-import 'package:plateron_assignment/notes/widgets/text_field_widget.dart';
-import 'package:plateron_assignment/notes/widgets/top_actions_button.dart';
-import 'package:plateron_assignment/utils/common/local_storage/database_helper.dart';
-import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
+import 'package:triangle_note/notes/models/notes_data_model.dart';
+import 'package:triangle_note/notes/screens/note_dialog.dart';
+import 'package:triangle_note/notes/service/note_service.dart';
+import 'package:triangle_note/notes/widgets/text_field_widget.dart';
+import 'package:triangle_note/notes/widgets/top_actions_button.dart';
+import 'package:triangle_note/utils/app_toast.dart';
+import 'package:triangle_note/utils/common/local_storage/database_helper.dart';
+import 'package:triangle_note/utils/common/services/navigation_service.dart';
+import 'package:triangle_note/utils/common/services/shared_preference_service.dart';
 
 // ignore: must_be_immutable
 class EditNotePage extends StatefulWidget {
@@ -116,22 +118,24 @@ class _EditNotePageState extends State<EditNotePage> {
 
   void handleSave() async {
     int dbId = 0;
+    String? mobileNumber = await sharedPreferenceService.getUserMobileNumber();
     if (widget.existingNote == null) {
       dbId = await DatabaseHelper().addNote(
-        mobileNumber: '7503600686',
+        mobileNumber: mobileNumber ?? '',
         title: titleController.text,
         content: contentController.text,
         isFavorite: isFavorite,
       );
     } else {
       dbId = await DatabaseHelper().updateNote(
-        mobileNumber: '7503600686',
+        mobileNumber: mobileNumber ?? '',
         title: titleController.text,
         content: contentController.text,
         isFavorite: isFavorite,
         dbId: widget.existingNote!.dbId,
       );
     }
+    showToast(message: 'Note saved successfully');
     Map<String, dynamic>? map = await DatabaseHelper().getNoteById(dbId);
     widget.existingNote = NoteDataModel.fromJson(map!);
     callTriggerToRefresh();
@@ -165,8 +169,4 @@ class _EditNotePageState extends State<EditNotePage> {
       });
     }
   }
-
- 
-
- 
 }

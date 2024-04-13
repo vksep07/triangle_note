@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
+import 'package:triangle_note/utils/common/services/navigation_service.dart';
 
 class AppUtil {
   static void closeKeyboard() {

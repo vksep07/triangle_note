@@ -1,9 +1,9 @@
-import 'package:plateron_assignment/signup/model/user_model.dart';
-import 'package:plateron_assignment/utils/app_toast.dart';
-import 'package:plateron_assignment/utils/common/local_storage/database_helper.dart';
-import 'package:plateron_assignment/utils/common/routes/routes.dart';
-import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
-import 'package:plateron_assignment/utils/common/services/shared_preference_service.dart';
+import 'package:triangle_note/signup/model/user_model.dart';
+import 'package:triangle_note/utils/app_toast.dart';
+import 'package:triangle_note/utils/common/local_storage/database_helper.dart';
+import 'package:triangle_note/utils/common/routes/routes.dart';
+import 'package:triangle_note/utils/common/services/navigation_service.dart';
+import 'package:triangle_note/utils/common/services/shared_preference_service.dart';
 
 class AuthService {
   Future<bool> loginUser({
@@ -44,24 +44,6 @@ class AuthService {
     return DatabaseHelper().doesUserExist(mobileNumber);
   }
 
-  // Future<bool> addUser({
-  //   required String mobileNumber,
-  //   required String name,
-  //   required String pin,
-  // }) async {
-  //   bool isExist = await checkUserExist(mobileNumber: mobileNumber);
-  //   if (!isExist) {
-  //     await DatabaseHelper().addUser(
-  //       mobileNumber: mobileNumber,
-  //       name: name,
-  //       pin: pin,
-  //     );
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   Future<void> userLogin({
     String? mobileNumber,
     String? pin,
@@ -91,6 +73,8 @@ class AuthService {
 
         if (isSuccess) {
           sharedPreferenceService.setLoginStatus(isLogin: true);
+          sharedPreferenceService.setUserMobileNumber(
+              mobileNumber: mobileNumber);
           appNavigationService.pushReplacementNamed(Routes.note_screen);
         } else {
           _showToast('Invalid credentials');
@@ -139,13 +123,17 @@ class AuthService {
         _showToast('User already exist. Please login');
         return;
       } else {
+         
         int value = await DatabaseHelper().addUser(
           mobileNumber: mobileNumber,
           name: name,
           pin: pin,
         );
-        if (value == 1) {
+         print('mobileNumber: $mobileNumber, name: $name, pin: $pin, $value');
+        if (value >0) {
           sharedPreferenceService.setLoginStatus(isLogin: true);
+          sharedPreferenceService.setUserMobileNumber(
+              mobileNumber: mobileNumber);
           appNavigationService.pushReplacementNamed(Routes.note_screen);
         } else {
           _showToast('Something went wrong');

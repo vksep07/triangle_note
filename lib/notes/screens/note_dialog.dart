@@ -1,7 +1,7 @@
  import 'package:flutter/material.dart';
-import 'package:plateron_assignment/utils/common_util/string_utils.dart';
-import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
-import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
+import 'package:triangle_note/utils/common_util/string_utils.dart';
+import 'package:triangle_note/utils/common_util/utils_importer.dart';
+import 'package:triangle_note/utils/common_widgets/app_text_widget.dart';
 
 
 

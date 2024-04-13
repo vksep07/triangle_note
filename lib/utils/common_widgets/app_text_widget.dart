@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/app/app_config.dart';
+import 'package:triangle_note/app/app_config.dart';
 
 class AppTextWidget extends StatelessWidget {
   String? text;

@@ -1,4 +1,4 @@
-package com.example.plateron_assignment
+package com.example.triangle_note
 
 import io.flutter.embedding.android.FlutterActivity
 

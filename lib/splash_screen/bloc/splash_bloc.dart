@@ -1,6 +1,7 @@
-import 'package:plateron_assignment/utils/common/routes/routes.dart';
-import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
-import 'package:plateron_assignment/utils/common/services/shared_preference_service.dart';
+
+import 'package:triangle_note/utils/common/routes/routes.dart';
+import 'package:triangle_note/utils/common/services/navigation_service.dart';
+import 'package:triangle_note/utils/common/services/shared_preference_service.dart';
 
 class SplashBloc {
   redirectToHomeScreen() {

@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
+import 'package:triangle_note/utils/common_util/utils_importer.dart';
 
 enum MyThemeKeys { LIGHT, DARK, DARKER }
 

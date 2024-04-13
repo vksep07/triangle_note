@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/signup/widgets/auth_textfield.dart';
-import 'package:plateron_assignment/utils/constants.dart';
+import 'package:triangle_note/signup/widgets/auth_textfield.dart';
+import 'package:triangle_note/utils/constants.dart';
 
 class MobileWithCountryCodeTextfield extends StatelessWidget {
   final TextEditingController controller;

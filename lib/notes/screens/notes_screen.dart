@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:get_it/get_it.dart';
-import 'package:plateron_assignment/notes/models/notes_data_model.dart';
-import 'package:plateron_assignment/notes/screens/note_dialog.dart';
-import 'package:plateron_assignment/notes/service/note_service.dart';
-import 'package:plateron_assignment/utils/common/routes/routes.dart';
-import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
-import 'package:plateron_assignment/utils/common/services/shared_preference_service.dart';
-import 'package:plateron_assignment/utils/common_util/string_utils.dart';
-import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
-import 'package:plateron_assignment/utils/common_widgets/custom_theme.dart';
-import 'package:plateron_assignment/utils/spacing.dart';
+import 'package:triangle_note/notes/models/notes_data_model.dart';
+import 'package:triangle_note/notes/screens/note_dialog.dart';
+import 'package:triangle_note/notes/service/note_service.dart';
+import 'package:triangle_note/utils/common/routes/routes.dart';
+import 'package:triangle_note/utils/common/services/navigation_service.dart';
+import 'package:triangle_note/utils/common/services/shared_preference_service.dart';
+import 'package:triangle_note/utils/common_util/string_utils.dart';
+import 'package:triangle_note/utils/common_widgets/app_text_widget.dart';
+import 'package:triangle_note/utils/common_widgets/custom_theme.dart';
+import 'package:triangle_note/utils/spacing.dart';
 
 class NoteScreen extends StatefulWidget {
   const NoteScreen({
@@ -218,6 +218,7 @@ class _NoteScreenState extends State<NoteScreen> {
     service.getUserFromDb().then((user) {
       setState(() {
         userName = "${StringUtils().Hello}, ${user.name}";
+
       });
     });
   }

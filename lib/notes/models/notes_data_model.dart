@@ -1,4 +1,5 @@
-import 'package:plateron_assignment/utils/app_util.dart';
+
+import 'package:triangle_note/utils/app_util.dart';
 
 class NoteDataModel {
   String title;

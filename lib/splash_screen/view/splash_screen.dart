@@ -1,12 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/splash_screen/bloc/splash_bloc.dart';
-import 'package:plateron_assignment/utils/assets.dart';
-import 'package:plateron_assignment/utils/common/logger/app_logger.dart';
-import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
-import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
-import 'package:plateron_assignment/utils/spacing.dart';
+import 'package:triangle_note/splash_screen/bloc/splash_bloc.dart';
+import 'package:triangle_note/utils/assets.dart';
+import 'package:triangle_note/utils/common/logger/app_logger.dart';
+import 'package:triangle_note/utils/common_util/utils_importer.dart';
+import 'package:triangle_note/utils/common_widgets/app_text_widget.dart';
+import 'package:triangle_note/utils/spacing.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

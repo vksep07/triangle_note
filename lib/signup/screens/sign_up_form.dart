@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plateron_assignment/signup/widgets/auth_textfield.dart';
-import 'package:plateron_assignment/signup/widgets/mobile_code_textfield.dart';
-import 'package:plateron_assignment/utils/extensions.dart';
+import 'package:triangle_note/signup/widgets/auth_textfield.dart';
+import 'package:triangle_note/signup/widgets/mobile_code_textfield.dart';
+import 'package:triangle_note/utils/extensions.dart';
 
 class SignUpForm extends StatefulWidget {
   final Function numberTextChange;

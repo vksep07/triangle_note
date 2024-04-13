@@ -4,15 +4,15 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:plateron_assignment/signup/screens/login_form.dart';
-import 'package:plateron_assignment/signup/screens/sign_up_form.dart';
-import 'package:plateron_assignment/signup/service/auth_service.dart';
-import 'package:plateron_assignment/utils/assets.dart';
-import 'package:plateron_assignment/utils/common_util/string_utils.dart';
-import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
-import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
-import 'package:plateron_assignment/utils/constants.dart';
-import 'package:plateron_assignment/utils/extensions.dart';
+import 'package:triangle_note/signup/screens/login_form.dart';
+import 'package:triangle_note/signup/screens/sign_up_form.dart';
+import 'package:triangle_note/signup/service/auth_service.dart';
+import 'package:triangle_note/utils/assets.dart';
+import 'package:triangle_note/utils/common_util/string_utils.dart';
+import 'package:triangle_note/utils/common_util/utils_importer.dart';
+import 'package:triangle_note/utils/common_widgets/app_text_widget.dart';
+import 'package:triangle_note/utils/constants.dart';
+import 'package:triangle_note/utils/extensions.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
