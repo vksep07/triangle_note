@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:plateron_assignment/splash_screen/bloc/splash_bloc.dart';
 import 'package:plateron_assignment/utils/assets.dart';
 import 'package:plateron_assignment/utils/common/logger/app_logger.dart';
+import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
+import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
+import 'package:plateron_assignment/utils/spacing.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -51,6 +54,8 @@ class _SplashScreenState extends State<SplashScreen>
                 opacity: animationController
                     .drive(CurveTween(curve: Curves.easeOut)),
                 child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.width * 0.5,
                   child: Image.asset(
                     Assets.appLogo,
                     fit: BoxFit.contain,
@@ -58,6 +63,11 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
               ),
+            ),
+            AppTextWidget(
+              text: UtilsImporter().stringUtils.appName,
+              size: AppSpacing.xxxxl,
+              fontWeight: FontWeight.bold,
             ),
           ],
         ));

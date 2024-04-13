@@ -3,11 +3,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:plateron_assignment/signup/screens/login_form.dart';
 import 'package:plateron_assignment/signup/screens/sign_up_form.dart';
 import 'package:plateron_assignment/signup/service/auth_service.dart';
+import 'package:plateron_assignment/utils/assets.dart';
 import 'package:plateron_assignment/utils/common_util/string_utils.dart';
 import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
 import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
@@ -138,8 +138,10 @@ class _AuthScreenState extends State<AuthScreen>
                       radius: 40,
                       child: AnimatedSwitcher(
                         duration: defaultDuration,
-                        child: SvgPicture.asset(
-                          'assets/images/animation_logo.svg',
+                        child: Image.asset(
+                          width: 40,
+                          height: 40,
+                          Assets.appLogo,
                           color: Theme.of(context).primaryColor,
                         ),
                       ),

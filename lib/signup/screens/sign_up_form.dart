@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plateron_assignment/signup/widgets/auth_textfield.dart';
 import 'package:plateron_assignment/signup/widgets/mobile_code_textfield.dart';
-import 'package:plateron_assignment/utils/constants.dart';
 import 'package:plateron_assignment/utils/extensions.dart';
 
 class SignUpForm extends StatefulWidget {

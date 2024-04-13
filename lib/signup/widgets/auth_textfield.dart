@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:plateron_assignment/utils/constants.dart';
 
 class AuthTextField extends StatelessWidget {

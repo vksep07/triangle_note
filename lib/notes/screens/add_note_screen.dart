@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:plateron_assignment/notes/models/notes_data_model.dart';
+import 'package:plateron_assignment/notes/screens/note_dialog.dart';
 import 'package:plateron_assignment/notes/service/note_service.dart';
 import 'package:plateron_assignment/notes/widgets/text_field_widget.dart';
 import 'package:plateron_assignment/notes/widgets/top_actions_button.dart';
 import 'package:plateron_assignment/utils/common/local_storage/database_helper.dart';
 import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
-import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
 
 // ignore: must_be_immutable
 class EditNotePage extends StatefulWidget {
@@ -51,7 +51,9 @@ class _EditNotePageState extends State<EditNotePage> {
         body: Stack(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
               child: ListView(
                 children: <Widget>[
                   Container(
@@ -153,59 +155,18 @@ class _EditNotePageState extends State<EditNotePage> {
     if (widget.existingNote == null) {
       Navigator.pop(context);
     } else {
-      openConfirmationDialog();
+      openConfirmationDialog(context, () async {
+        await DatabaseHelper().deleteNote(
+          dbId: widget.existingNote!.dbId,
+        );
+        callTriggerToRefresh();
+        Navigator.pop(context);
+        Navigator.pop(context);
+      });
     }
   }
 
-  openConfirmationDialog() {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            title: AppTextWidget(
-              text: 'Delete Note',
-              fontWeight: FontWeight.w500,
-              size: 18,
-            ),
-            content: AppTextWidget(
-              text: 'This note will be deleted permanently',
-              size: 14,
-              fontWeight: FontWeight.normal,
-            ),
-            actions: <Widget>[
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColorDark,
-                ),
-                onPressed: () async {
-                  await DatabaseHelper()
-                      .deleteNote(dbId: widget.existingNote!.dbId);
-                  callTriggerToRefresh();
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                },
-                child: AppTextWidget(
-                  text: 'DELETE',
-                  color: Theme.of(context).primaryColorLight,
-                ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColorDark,
-                ),
-                onPressed: () async {
-                  Navigator.pop(context);
-                },
-                child: AppTextWidget(
-                  text: 'CANCEL',
-                  color: Theme.of(context).primaryColorLight,
-                ),
-              ),
-            ],
-          );
-        });
-  }
+ 
+
+ 
 }

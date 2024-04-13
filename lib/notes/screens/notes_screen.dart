@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:get_it/get_it.dart';
 import 'package:plateron_assignment/notes/models/notes_data_model.dart';
+import 'package:plateron_assignment/notes/screens/note_dialog.dart';
 import 'package:plateron_assignment/notes/service/note_service.dart';
 import 'package:plateron_assignment/utils/common/routes/routes.dart';
 import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
 import 'package:plateron_assignment/utils/common/services/shared_preference_service.dart';
+import 'package:plateron_assignment/utils/common_util/string_utils.dart';
 import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
 import 'package:plateron_assignment/utils/common_widgets/custom_theme.dart';
+import 'package:plateron_assignment/utils/spacing.dart';
 
 class NoteScreen extends StatefulWidget {
   const NoteScreen({
@@ -41,11 +43,14 @@ class _NoteScreenState extends State<NoteScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(
-          decoration:  BoxDecoration(boxShadow: [
+          decoration: BoxDecoration(boxShadow: [
             BoxShadow(
               color: Theme.of(context).primaryColorDark,
-              offset:const  Offset(0, 2.0),
-              blurRadius: 4.0,
+              offset: const Offset(
+                0,
+                AppSpacing.xxs,
+              ),
+              blurRadius: AppSpacing.xs,
             )
           ]),
           child: AppBar(
@@ -57,22 +62,25 @@ class _NoteScreenState extends State<NoteScreen> {
             actions: [
               IconButton(
                 icon: (context.isDarkMode)
-                    ? const Icon(Icons.wb_sunny_outlined)
+                    ? const Icon(Icons.sunny)
                     : const Icon(Icons.wb_sunny_outlined),
                 onPressed: () {
                   _changeTheme(context.isDarkMode
                       ? MyThemeKeys.LIGHT
                       : MyThemeKeys.DARK);
+                  setState(() {});
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.logout),
                 onPressed: () {
-                  sharedPreferenceService.setLoginStatus(isLogin: false);
-                  appNavigationService.pushNamedAndRemoveUntil(
-                    Routes.auth_screen,
-                    (route) => false,
-                  );
+                  openLogoutDialog(context, () {
+                    sharedPreferenceService.setLoginStatus(isLogin: false);
+                    appNavigationService.pushNamedAndRemoveUntil(
+                      Routes.auth_screen,
+                      (route) => false,
+                    );
+                  });
                 },
               ),
             ],
@@ -83,7 +91,7 @@ class _NoteScreenState extends State<NoteScreen> {
               text: userName,
               textAlign: TextAlign.start,
               fontWeight: FontWeight.bold,
-              size: 18.0,
+              size: AppSpacing.l,
             ),
           ),
         ),
@@ -105,19 +113,22 @@ class _NoteScreenState extends State<NoteScreen> {
                 child: Text('No notes found.\n Add a new note to get started.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: AppSpacing.l,
                       fontWeight: FontWeight.bold,
                     )),
               )
-            : ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  return _buildListItem(list[index]);
-                },
+            : Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: ListView.builder(
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    return _buildListItem(list[index]);
+                  },
+                ),
               ),
         Positioned(
-          bottom: 16.0,
-          right: 16.0,
+          bottom: AppSpacing.mx,
+          right: AppSpacing.mx,
           child: FloatingActionButton(
             backgroundColor: Theme.of(context).primaryColorDark,
             onPressed: () {
@@ -142,11 +153,13 @@ class _NoteScreenState extends State<NoteScreen> {
         );
       },
       child: Container(
-        margin: const EdgeInsets.all(8.0),
-        padding: const EdgeInsets.all(12.0),
+        margin: const EdgeInsets.all(
+          AppSpacing.s,
+        ),
+        padding: const EdgeInsets.all(AppSpacing.sx),
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColorLight,
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(AppSpacing.sx),
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).primaryColorDark.withOpacity(0.5),
@@ -204,7 +217,7 @@ class _NoteScreenState extends State<NoteScreen> {
   getUserNameText() {
     service.getUserFromDb().then((user) {
       setState(() {
-        userName = "Hello, ${user.name}";
+        userName = "${StringUtils().Hello}, ${user.name}";
       });
     });
   }
