@@ -129,7 +129,6 @@ class AuthService {
           name: name,
           pin: pin,
         );
-         print('mobileNumber: $mobileNumber, name: $name, pin: $pin, $value');
         if (value >0) {
           sharedPreferenceService.setLoginStatus(isLogin: true);
           sharedPreferenceService.setUserMobileNumber(
