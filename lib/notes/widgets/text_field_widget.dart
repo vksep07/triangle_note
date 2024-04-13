@@ -25,6 +25,7 @@ class TextFieldWidget extends StatelessWidget {
     return TextFormField(
       focusNode: titleFocus,
       autofocus: true,
+      cursorColor: Theme.of(context).primaryColorDark,
       controller: textEditingController,
       keyboardType: TextInputType.multiline,
       maxLines: null,
@@ -40,13 +41,14 @@ class TextFieldWidget extends StatelessWidget {
       },
       textInputAction: TextInputAction.next,
       style: TextStyle(
+        color: Theme.of(context).primaryColorDark,
         fontSize: fontSize ?? 32,
         fontWeight: fontWeight ?? FontWeight.w700,
       ),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Colors.grey.shade400,
+          color: Theme.of(context).primaryColorDark.withOpacity(0.5),
           fontSize: fontSize ?? 32,
           fontWeight: fontWeight ?? FontWeight.w700,
         ),

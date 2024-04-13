@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:plateron_assignment/signup/widgets/auth_textfield.dart';
 import 'package:plateron_assignment/signup/widgets/mobile_code_textfield.dart';
+import 'package:plateron_assignment/utils/common_util/string_utils.dart';
+import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
+import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
 import 'package:plateron_assignment/utils/constants.dart';
 import 'package:plateron_assignment/utils/extensions.dart';
 
@@ -24,6 +27,8 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void initState() {
     super.initState();
+
+    
   }
 
   @override
@@ -41,27 +46,33 @@ class _LoginFormState extends State<LoginForm> {
           children: [
             const Spacer(),
             MobileWithCountryCodeTextfield(
+              bgColor: Theme.of(context).primaryColorDark,
               controller: _numberController,
-              hintText: 'Enter mobile number',
-              onTextChanged: (value){
+              hintText: getStringObject().enter_mobile_number,
+              onTextChanged: (value) {
                 widget.numberTextChange(value);
               },
             ),
             20.heightBox,
             AuthTextField(
               controller: _pinController,
-              hintText: 'Enter pin',
+              hintText: getStringObject().enter_pin,
               maxLength: 4,
               withContainer: true,
               obscureText: true,
+              bgColor: Theme.of(context).primaryColorDark,
               onTextChanged: (value) {
                 widget.pinTextChange(value);
               },
             ),
             TextButton(
               onPressed: () {},
-              child: const Text("Forgot Pin?",
-                  style: TextStyle(color: Colors.white)),
+              child: AppTextWidget(
+                size: 16,
+                fontWeight: FontWeight.w500,
+                text: getStringObject().forgot_pin,
+                color: Theme.of(context).primaryColorDark,
+              ),
             ),
             const Spacer(
               flex: 2,
@@ -78,5 +89,9 @@ class _LoginFormState extends State<LoginForm> {
       borderSide: BorderSide(color: color, width: 0),
       borderRadius: BorderRadius.circular(5.0),
     );
+  }
+
+  StringUtils getStringObject() {
+    return UtilsImporter().stringUtils;
   }
 }

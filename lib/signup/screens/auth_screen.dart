@@ -8,9 +8,9 @@ import 'package:get_it/get_it.dart';
 import 'package:plateron_assignment/signup/screens/login_form.dart';
 import 'package:plateron_assignment/signup/screens/sign_up_form.dart';
 import 'package:plateron_assignment/signup/service/auth_service.dart';
-import 'package:plateron_assignment/utils/app_snackbar.dart';
-import 'package:plateron_assignment/utils/common/routes/routes.dart';
-import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
+import 'package:plateron_assignment/utils/common_util/string_utils.dart';
+import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
+import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
 import 'package:plateron_assignment/utils/constants.dart';
 import 'package:plateron_assignment/utils/extensions.dart';
 
@@ -50,7 +50,10 @@ class _AuthScreenState extends State<AuthScreen>
   void setUpAnimation() {
     _animationController =
         AnimationController(vsync: this, duration: defaultDuration);
-    _animationTextRotate = Tween<double>(begin: 0, end: 90).animate(
+    _animationTextRotate = Tween<double>(
+      begin: 0,
+      end: 90,
+    ).animate(
         CurvedAnimation(parent: _animationController, curve: Curves.linear));
   }
 
@@ -82,7 +85,9 @@ class _AuthScreenState extends State<AuthScreen>
                     height: height,
                     left: _isShowSignUp ? -width * 0.76 : 0,
                     child: Container(
-                      color: loginBg,
+                      color: (_isShowSignUp)
+                          ? Theme.of(context).primaryColorDark
+                          : Theme.of(context).primaryColor,
                       child: LoginForm(
                         numberTextChange: (value) {
                           loginMobileNumber = value;
@@ -101,7 +106,9 @@ class _AuthScreenState extends State<AuthScreen>
                     width: width * 0.88,
                     height: height,
                     child: Container(
-                      color: signUpBg,
+                      color: (_isShowSignUp)
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).primaryColorDark,
                       child: SignUpForm(
                         nameTextChange: (value) {
                           name = value;
@@ -127,28 +134,17 @@ class _AuthScreenState extends State<AuthScreen>
                     right: _isShowSignUp ? -width * 0.06 : width * 0.06,
                     top: context.height * 0.1, // 10%
                     child: CircleAvatar(
-                      backgroundColor: _isShowSignUp
-                          ? Colors.white60
-                          : signUpBg.withOpacity(0.5),
+                      backgroundColor: Theme.of(context).primaryColorDark,
                       radius: 40,
                       child: AnimatedSwitcher(
                         duration: defaultDuration,
                         child: SvgPicture.asset(
-                            'assets/images/animation_logo.svg',
-                            color: _isShowSignUp ? signUpBg : loginBg),
+                          'assets/images/animation_logo.svg',
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                     ),
                   ),
-
-                  // social media
-                  // AnimatedPositioned(
-                  //   duration: defaultDuration,
-                  //   // left: 0,
-                  //   width: width,
-                  //   right: _isShowSignUp ? -width * 0.06 : width * 0.06,
-                  //   bottom: context.height * 0.1, // 10%
-                  //   child: const SocialButtons(),
-                  // ),
 
                   //login text animation
                   AnimatedPositioned(
@@ -187,15 +183,21 @@ class _AuthScreenState extends State<AuthScreen>
                             ),
                             decoration: BoxDecoration(
                               border: Border.all(
+                                width: 1.5,
                                 color: (_isShowSignUp)
                                     ? Colors.transparent
-                                    : Colors.white,
+                                  : Theme.of(context).primaryColorDark,
                               ),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             width: 160,
-                            child: const Text(
-                              'LOG IN',
+                            child: AppTextWidget(
+                               size: 16,
+                                fontWeight: FontWeight.bold,
+                              text: getStringObject().login,
+                             color: (_isShowSignUp)
+                                    ? Theme.of(context).primaryColor
+                                    : Theme.of(context).primaryColorDark,
                             ),
                           ),
                         ),
@@ -216,7 +218,9 @@ class _AuthScreenState extends State<AuthScreen>
                       duration: defaultDuration,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: _isShowSignUp ? loginBg : loginBg,
+                        color:(_isShowSignUp)
+                                    ? Colors.transparent
+                                  : Theme.of(context).primaryColorDark,
                         fontSize: !_isShowSignUp ? 20 : 27,
                         fontWeight: FontWeight.bold,
                       ),
@@ -238,21 +242,26 @@ class _AuthScreenState extends State<AuthScreen>
                             }
                           },
                           child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: defaultPadding * 0.75),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: (_isShowSignUp)
-                                    ? loginBg
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: defaultPadding * 0.75),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1.5,
+                                  color:  (_isShowSignUp)
+                                    ? Theme.of(context).primaryColorDark
                                     : Colors.transparent,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            width: 160,
-                            child: const Text(
-                              'SIGN UP',
-                            ),
-                          ),
+                              width: 160,
+                              child: AppTextWidget(
+                                size: 16,
+                                fontWeight: FontWeight.bold,
+                                text: getStringObject().signup,
+                                color: (_isShowSignUp)
+                                    ? Theme.of(context).primaryColorDark
+                                    : Theme.of(context).primaryColor,
+                              )),
                         ),
                       ),
                     ),
@@ -260,5 +269,9 @@ class _AuthScreenState extends State<AuthScreen>
                 ],
               );
             }));
+  }
+
+  StringUtils getStringObject() {
+    return UtilsImporter().stringUtils;
   }
 }

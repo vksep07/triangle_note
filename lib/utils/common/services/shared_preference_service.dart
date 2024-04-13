@@ -1,12 +1,7 @@
-import 'dart:convert';
-
-import 'package:plateron_assignment/home/network/model/response/jokes_res_model.dart';
-import 'package:plateron_assignment/home/network/model/response/product_list_model.dart';
-import 'package:plateron_assignment/utils/common/logger/app_logger.dart';
+import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceService {
-  //TAG
   final tag = "SHARED_PREFERENCE_SERVICE";
 
   late SharedPreferences _prefs;
@@ -22,25 +17,20 @@ class SharedPreferenceService {
     }
   }
 
-  List<ProductList> getJokesList() {
-    String? pref = _prefs.getString("joke_list");
-    if (pref != null) {
-      // convert string data to jsonMap
-      var jsonMap = json.decode(pref);
-      AppLogger.printLog('getJokesList -- ${jsonMap}');
-
-// convert json map list to object model lis
-      List<ProductList> sampleListFromPreferance = List<ProductList>.from(
-          jsonMap.map((x) => ProductListModel.fromJson(x)));
-      return sampleListFromPreferance;
-    } else {
-      return [];
-    }
+  Future setUserMobileNumber({required String mobileNumber}) async {
+    await _prefs.setString('mobileNumber', mobileNumber);
   }
 
-  Future setProductList({List<ProductList>? productList}) async {
-    String? listJson = json.encode(productList);
-    await _prefs.setString('joke_list', listJson);
+  Future<String?> getUserMobileNumber() async {
+    return _prefs.getString('mobileNumber');
+  }
+
+  Future setLoginStatus({required bool isLogin}) async {
+    await _prefs.setBool('isLogin', isLogin);
+  }
+
+  Future<bool> getLoginStatus() async {
+    return _prefs.getBool('isLogin') ?? false;
   }
 
   Future _clearAllData() async {

@@ -1,7 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart' as prefix0;
 import 'package:get_it/get_it.dart';
 import 'package:plateron_assignment/notes/models/notes_data_model.dart';
 import 'package:plateron_assignment/notes/service/note_service.dart';
@@ -9,6 +8,7 @@ import 'package:plateron_assignment/notes/widgets/text_field_widget.dart';
 import 'package:plateron_assignment/notes/widgets/top_actions_button.dart';
 import 'package:plateron_assignment/utils/common/local_storage/database_helper.dart';
 import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
+import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
 
 // ignore: must_be_immutable
 class EditNotePage extends StatefulWidget {
@@ -47,68 +47,69 @@ class _EditNotePageState extends State<EditNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).primaryColorLight,
         body: Stack(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView(
-            children: <Widget>[
-              Container(
-                height: 80,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                    height: 80,
+                  ),
+                  TextFieldWidget(
+                    textEditingController: titleController,
+                    titleFocus: titleFocus,
+                    hintText: 'Enter the title',
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                    onFieldSubmitted: () {
+                      titleFocus.unfocus();
+                      FocusScope.of(context).requestFocus(contentFocus);
+                    },
+                  ),
+                  TextFieldWidget(
+                    textEditingController: contentController,
+                    titleFocus: contentFocus,
+                    hintText: 'Write note here...',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                    onFieldSubmitted: () {},
+                  ),
+                ],
               ),
-              TextFieldWidget(
-                textEditingController: titleController,
-                titleFocus: titleFocus,
-                hintText: 'Enter the title',
-                onChanged: (value) {
-                  setState(() {});
-                },
-                onFieldSubmitted: () {
-                  titleFocus.unfocus();
-                  FocusScope.of(context).requestFocus(contentFocus);
-                },
-              ),
-              TextFieldWidget(
-                textEditingController: contentController,
-                titleFocus: contentFocus,
-                hintText: 'Write note here...',
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                onChanged: (value) {
-                  setState(() {});
-                },
-                onFieldSubmitted: () {},
-              ),
-            ],
-          ),
-        ),
-        TopActionButton(
-          isEnable: checkSaveButtonEnable(),
-          onSave: () {
-            handleSave();
-          },
-          backButton: () {
-            appNavigationService.pop();
-          },
-          isFavorite: isFavorite,
-          onDelete: () {
-            handleDelete();
-          },
-          onPressedImportantIcon: () {
-            setState(() {
-              if (isFavorite) {
-                isFavorite = false;
-              } else {
-                isFavorite = true;
-              }
-            });
-            if (checkSaveButtonEnable()) {
-              handleSave();
-            }
-          },
-        ),
-      ],
-    ));
+            ),
+            TopActionButton(
+              isEnable: checkSaveButtonEnable(),
+              onSave: () {
+                handleSave();
+              },
+              backButton: () {
+                appNavigationService.pop();
+              },
+              isFavorite: isFavorite,
+              onDelete: () {
+                handleDelete();
+              },
+              onPressedImportantIcon: () {
+                setState(() {
+                  if (isFavorite) {
+                    isFavorite = false;
+                  } else {
+                    isFavorite = true;
+                  }
+                });
+                if (checkSaveButtonEnable()) {
+                  handleSave();
+                }
+              },
+            ),
+          ],
+        ));
   }
 
   void handleSave() async {
@@ -159,14 +160,26 @@ class _EditNotePageState extends State<EditNotePage> {
   openConfirmationDialog() {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            title: const Text('Delete Note'),
-            content: const Text('This note will be deleted permanently'),
+            title: AppTextWidget(
+              text: 'Delete Note',
+              fontWeight: FontWeight.w500,
+              size: 18,
+            ),
+            content: AppTextWidget(
+              text: 'This note will be deleted permanently',
+              size: 14,
+              fontWeight: FontWeight.normal,
+            ),
             actions: <Widget>[
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColorDark,
+                ),
                 onPressed: () async {
                   await DatabaseHelper()
                       .deleteNote(dbId: widget.existingNote!.dbId);
@@ -174,21 +187,22 @@ class _EditNotePageState extends State<EditNotePage> {
                   Navigator.pop(context);
                   Navigator.pop(context);
                 },
-                child: Text('DELETE',
-                    style: prefix0.TextStyle(
-                        color: Colors.red.shade300,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 1)),
+                child: AppTextWidget(
+                  text: 'DELETE',
+                  color: Theme.of(context).primaryColorLight,
+                ),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColorDark,
+                ),
                 onPressed: () async {
                   Navigator.pop(context);
                 },
-                child: Text('CANCEL',
-                    style: prefix0.TextStyle(
-                        color: Colors.red.shade300,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 1)),
+                child: AppTextWidget(
+                  text: 'CANCEL',
+                  color: Theme.of(context).primaryColorLight,
+                ),
               ),
             ],
           );

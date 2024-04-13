@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -59,10 +61,11 @@ class AppNavigationService {
 // CHECK IF ANY DIALOG IS OPENED OR NOT
   bool _isDialogOpened = false;
 
-  Future<dynamic>? showPopUp(
-      {required Widget Widget,
-      required bool barrierDismissible,
-      Function? onPopAction}) async {
+  Future<dynamic>? showPopUp({
+    required Widget Widget,
+    required bool barrierDismissible,
+    Function? onPopAction,
+  }) async {
     if (_isDialogOpened == false) {
       _isDialogOpened = true;
       await showDialog(

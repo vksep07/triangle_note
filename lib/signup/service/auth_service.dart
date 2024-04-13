@@ -1,8 +1,9 @@
 import 'package:plateron_assignment/signup/model/user_model.dart';
-import 'package:plateron_assignment/utils/app_snackbar.dart';
+import 'package:plateron_assignment/utils/app_toast.dart';
 import 'package:plateron_assignment/utils/common/local_storage/database_helper.dart';
 import 'package:plateron_assignment/utils/common/routes/routes.dart';
 import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
+import 'package:plateron_assignment/utils/common/services/shared_preference_service.dart';
 
 class AuthService {
   Future<bool> loginUser({
@@ -87,7 +88,9 @@ class AuthService {
           mobileNumber: mobileNumber,
           pin: pin,
         );
+        
         if (isSuccess) {
+          sharedPreferenceService.setLoginStatus(isLogin: true);
           appNavigationService.pushReplacementNamed(Routes.note_screen);
         } else {
           _showToast('Invalid credentials');

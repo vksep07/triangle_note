@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:plateron_assignment/utils/constants.dart';
 
 class AuthTextField extends StatelessWidget {
@@ -35,29 +36,33 @@ class AuthTextField extends StatelessWidget {
             child: getTextField(
               controller: controller,
               hintText: hintText,
+              context: context
             ),
           )
         : getTextField(
             controller: controller,
             hintText: hintText,
+            context: context,
           );
   }
 
   Widget getTextField({
     String? hintText,
     required TextEditingController? controller,
+   required BuildContext context,
   }) {
     return TextField(
+      cursorColor: Theme.of(context).primaryColorLight,
       obscureText: obscureText ?? false,
       controller: controller,
-      style: const TextStyle(color: Colors.white),
+      style:  TextStyle(color: Theme.of(context).primaryColorLight),
       maxLength: maxLength ?? 10,
-      keyboardType:keyboardType ?? TextInputType.number,
+      keyboardType: keyboardType ?? TextInputType.number,
       decoration: InputDecoration(
         counterText: '',
         hintText: hintText,
-        hintStyle: const TextStyle(
-          color: Colors.white,
+        hintStyle:  TextStyle(
+          color: Theme.of(context).primaryColorLight,
           fontSize: 16,
           fontWeight: FontWeight.w400,
         ),

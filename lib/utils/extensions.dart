@@ -10,8 +10,6 @@ extension NumExtension on num {
       );
 }
 
-
-
 /// Extension we can apply it for screen size
 extension ContextExtension on BuildContext {
   double get height => MediaQuery.of(this).size.height;
@@ -21,4 +19,8 @@ extension ContextExtension on BuildContext {
   bool get portrait => MediaQuery.of(this).orientation == Orientation.portrait;
   bool get landscape =>
       MediaQuery.of(this).orientation == Orientation.landscape;
+  bool get isDarkMode {
+    final brightness = MediaQuery.of(this).platformBrightness;
+    return brightness == Brightness.dark;
+  }
 }

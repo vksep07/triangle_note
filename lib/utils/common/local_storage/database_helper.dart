@@ -110,7 +110,6 @@ class DatabaseHelper {
       {'mobileNumber': mobileNumber, 'name': name, 'pin': pin},
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print('addUser value $value');
     return value;
   }
 

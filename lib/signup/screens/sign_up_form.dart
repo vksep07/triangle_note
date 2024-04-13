@@ -39,7 +39,7 @@ class _SignUpFormState extends State<SignUpForm> {
             MobileWithCountryCodeTextfield(
               controller: _mobileNumberController,
               hintText: 'Enter mobile number',
-              bgColor: loginBg,
+              bgColor: Theme.of(context).primaryColorDark,
               onTextChanged: (value) {
                 widget.numberTextChange(value);
               },
@@ -49,8 +49,9 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _nameController,
               hintText: 'Enter name here',
               withContainer: true,
-              bgColor: loginBg,
+              bgColor: Theme.of(context).primaryColorDark,
               keyboardType: TextInputType.text,
+              maxLength: 30,
               onTextChanged: (value) {
                 widget.nameTextChange(value);
               },
@@ -60,7 +61,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _pinController,
               hintText: 'Enter pin',
               withContainer: true,
-              bgColor: loginBg,
+              bgColor: Theme.of(context).primaryColorDark,
               obscureText: true,
               onTextChanged: (value) {
                 widget.pinTextChange(value);
@@ -71,7 +72,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _reEnterPinController,
               hintText: 'Reenter pin',
               withContainer: true,
-              bgColor: loginBg,
+              bgColor: Theme.of(context).primaryColorDark,
               obscureText: true,
               onTextChanged: (value) {
                 widget.reEnterPinTextChange(value);

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:plateron_assignment/utils/common_util/string_utils.dart';
 
 import 'colors_utils.dart';

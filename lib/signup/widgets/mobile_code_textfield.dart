@@ -34,7 +34,7 @@ class MobileWithCountryCodeTextfield extends StatelessWidget {
           SizedBox(
             width: 40,
             child: TextField(
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: Theme.of(context).primaryColorLight),
               readOnly: true,
               controller: TextEditingController(text: "+91"),
               keyboardType: TextInputType.number,
@@ -43,12 +43,10 @@ class MobileWithCountryCodeTextfield extends StatelessWidget {
               ),
             ),
           ),
-          const Text(
+          Text(
             "|",
             style: TextStyle(
-              fontSize: 33,
-              color: Colors.white,
-            ),
+                fontSize: 33, color: Theme.of(context).primaryColorLight),
           ),
           const SizedBox(
             width: 5,

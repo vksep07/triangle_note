@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:get_it/get_it.dart';
 import 'package:plateron_assignment/notes/models/notes_data_model.dart';
 import 'package:plateron_assignment/notes/service/note_service.dart';
-import 'package:plateron_assignment/signup/model/user_model.dart';
 import 'package:plateron_assignment/utils/common/routes/routes.dart';
 import 'package:plateron_assignment/utils/common/services/navigation_service.dart';
+import 'package:plateron_assignment/utils/common/services/shared_preference_service.dart';
+import 'package:plateron_assignment/utils/common_widgets/app_text_widget.dart';
+import 'package:plateron_assignment/utils/common_widgets/custom_theme.dart';
 
 class NoteScreen extends StatefulWidget {
   const NoteScreen({
@@ -33,48 +37,56 @@ class _NoteScreenState extends State<NoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.0, 0.5, 1.0],
-            colors: [
-              Colors.blue,
-              Colors.cyan,
-              Colors.green,
+      backgroundColor: Theme.of(context).primaryColor,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration:  BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).primaryColorDark,
+              offset:const  Offset(0, 2.0),
+              blurRadius: 4.0,
+            )
+          ]),
+          child: AppBar(
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColorLight,
+            actionsIconTheme: IconThemeData(
+              color: Theme.of(context).primaryColorDark,
+            ),
+            actions: [
+              IconButton(
+                icon: (context.isDarkMode)
+                    ? const Icon(Icons.wb_sunny_outlined)
+                    : const Icon(Icons.wb_sunny_outlined),
+                onPressed: () {
+                  _changeTheme(context.isDarkMode
+                      ? MyThemeKeys.LIGHT
+                      : MyThemeKeys.DARK);
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.logout),
+                onPressed: () {
+                  sharedPreferenceService.setLoginStatus(isLogin: false);
+                  appNavigationService.pushNamedAndRemoveUntil(
+                    Routes.auth_screen,
+                    (route) => false,
+                  );
+                },
+              ),
             ],
-          )),
-        ),
-        actions: [
-          PopupMenuButton(onSelected: (value) {
-            // Do something here
-          }, itemBuilder: (BuildContext bc) {
-            return const [
-              PopupMenuItem(
-                child: Text("Hello"),
-                value: '/hello',
-              ),
-              PopupMenuItem(
-                child: Text("About"),
-                value: '/about',
-              ),
-              PopupMenuItem(
-                child: Text("Contact"),
-                value: '/contact',
-              )
-            ];
-          })
-        ],
-        automaticallyImplyLeading: false,
-        centerTitle: false,
-        title: Text(userName,
-            textAlign: TextAlign.start,
-            style: const TextStyle(
-              fontSize: 18.0,
+            automaticallyImplyLeading: false,
+            centerTitle: false,
+            title: AppTextWidget(
+              color: Theme.of(context).primaryColorDark,
+              text: userName,
+              textAlign: TextAlign.start,
               fontWeight: FontWeight.bold,
-            )),
+              size: 18.0,
+            ),
+          ),
+        ),
       ),
       body: ValueListenableBuilder<List<NoteDataModel>>(
         valueListenable: service.notes,
@@ -107,10 +119,14 @@ class _NoteScreenState extends State<NoteScreen> {
           bottom: 16.0,
           right: 16.0,
           child: FloatingActionButton(
+            backgroundColor: Theme.of(context).primaryColorDark,
             onPressed: () {
               appNavigationService.pushNamed(Routes.add_note_screen);
             },
-            child: const Icon(Icons.add),
+            child: Icon(
+              Icons.add,
+              color: Theme.of(context).primaryColorLight,
+            ),
           ),
         ),
       ],
@@ -129,11 +145,11 @@ class _NoteScreenState extends State<NoteScreen> {
         margin: const EdgeInsets.all(8.0),
         padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).primaryColorLight,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Theme.of(context).primaryColorDark.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 5,
               offset: const Offset(0, 3), // changes position of shadow
@@ -146,32 +162,35 @@ class _NoteScreenState extends State<NoteScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  item.title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18.0),
+                AppTextWidget(
+                  text: item.title,
+                  fontWeight: FontWeight.bold,
+                  size: 18.0,
+                  color: Theme.of(context).primaryColorDark,
                 ),
                 Icon(
                   (item.isFavorite) ? Icons.flag : Icons.outlined_flag,
-                  color: item.isFavorite ? Colors.red : Colors.grey,
+                  color: Theme.of(context).primaryColorDark,
                 ),
               ],
             ),
             const SizedBox(height: 8.0),
-            Text(
-              item.content,
-              style: const TextStyle(fontSize: 16.0),
-              maxLines: 2,
+            AppTextWidget(
+              text: item.content,
+              size: 16.0,
+              maxlines: 2,
               overflow: TextOverflow.ellipsis,
+              color: Theme.of(context).primaryColorDark,
             ),
             const SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Spacer(),
-                Text(
-                  item.dateTime,
-                  style: const TextStyle(color: Colors.grey),
+                AppTextWidget(
+                  text: item.dateTime,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).primaryColorDark,
                 ),
                 // Add any other widgets here for the bottom right corner
               ],
@@ -185,8 +204,13 @@ class _NoteScreenState extends State<NoteScreen> {
   getUserNameText() {
     service.getUserFromDb().then((user) {
       setState(() {
-         userName = "Hello, ${user.name}";
+        userName = "Hello, ${user.name}";
       });
     });
+  }
+
+  void _changeTheme(MyThemeKeys key) {
+    CustomTheme.instanceOf(appNavigationService.currentContext)
+        .changeTheme(key);
   }
 }

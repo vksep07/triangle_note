@@ -1,31 +1,39 @@
+// ignore_for_file: non_constant_identifier_names, constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:plateron_assignment/utils/common_util/utils_importer.dart';
 
 enum MyThemeKeys { LIGHT, DARK, DARKER }
 
 class MyThemes {
- static  String? LIGHT='LIGHT';
-static  String? DARK='DARK';
+  static String? LIGHT = 'LIGHT';
+  static String? DARK = 'DARK';
   static final ThemeData lightTheme = ThemeData(
-    primaryColor: UtilsImporter().colorUtils.primarycolor,
+    primaryColor: Colors.white,
     primaryColorLight: Colors.white,
-    primaryColorDark: Colors.black,
+    primaryColorDark: Colors.grey[850],
     brightness: Brightness.light,
     inputDecorationTheme: InputDecorationTheme(
-        focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-                color: UtilsImporter().colorUtils.primarycolor))),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: UtilsImporter().colorUtils.primarycolor,
+        ),
+      ),
+    ),
   );
 
   static final ThemeData darkTheme = ThemeData(
-    primaryColor: UtilsImporter().colorUtils.primarycolor,
-    primaryColorLight: Colors.black,
+    primaryColor: Colors.grey[850],
+    primaryColorLight: Colors.grey[850],
     primaryColorDark: Colors.white,
     brightness: Brightness.dark,
     inputDecorationTheme: InputDecorationTheme(
-        focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-                color: UtilsImporter().colorUtils.primarycolor))),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: UtilsImporter().colorUtils.primarycolor,
+        ),
+      ),
+    ),
   );
 
   static final ThemeData darkerTheme = ThemeData(
@@ -73,15 +81,17 @@ class CustomTheme extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  CustomThemeState createState() => new CustomThemeState();
+  CustomThemeState createState() => CustomThemeState();
 
   static ThemeData of(BuildContext? context) {
-    _CustomTheme inherited = (context?.dependOnInheritedWidgetOfExactType<_CustomTheme>() as _CustomTheme);
+    _CustomTheme inherited = (context
+        ?.dependOnInheritedWidgetOfExactType<_CustomTheme>() as _CustomTheme);
     return inherited.data!.theme!;
   }
 
   static CustomThemeState instanceOf(BuildContext? context) {
-    _CustomTheme inherited = (context?.dependOnInheritedWidgetOfExactType<_CustomTheme>() as _CustomTheme);
+    _CustomTheme inherited = (context
+        ?.dependOnInheritedWidgetOfExactType<_CustomTheme>() as _CustomTheme);
     return inherited.data!;
   }
 }
@@ -105,7 +115,7 @@ class CustomThemeState extends State<CustomTheme> {
 
   @override
   Widget build(BuildContext context) {
-    return new _CustomTheme(
+    return _CustomTheme(
       data: this,
       child: widget.child,
     );
