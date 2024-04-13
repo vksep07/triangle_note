@@ -31,11 +31,14 @@ The project employs a clean architecture approach, with a structured folder brea
 
 ## Screenshots
 
-![plateron_collage_android_light](https://github.com/vksep07/plateron_assignment/assets/16042343/4af53592-bb22-4e4f-bd99-a6e8ef1997c5)
+![dark_theme_pre_login](https://github.com/vksep07/doctor_assesment_app/assets/16042343/5c1bb675-8171-4f47-8d7e-08deb792399f)
+
+
+![dark_theme_home](https://github.com/vksep07/doctor_assesment_app/assets/16042343/f0a81890-9478-4808-aa06-068b720b4d7e)
 
 
 
-![plateron_collage_dark](https://github.com/vksep07/plateron_assignment/assets/16042343/206c18a2-2634-4fc6-897a-b3933d8f8f66)
+![light_theme_screenshot](https://github.com/vksep07/doctor_assesment_app/assets/16042343/bd3ee2a4-9d3d-4bb9-bb79-51c6be719053)
 
 
 
@@ -58,7 +61,7 @@ https://github.com/vksep07/plateron_assignment/assets/16042343/5b5bdb73-2648-4b9
 Clone the repo
 
 ```bash
-  git clone https://github.com/vksep07/plateron_assignment
+  git clone https://github.com/vksep07/triangle_note
 ```
 
 Install the dependencies
