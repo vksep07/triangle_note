@@ -42,10 +42,11 @@ The project employs a clean architecture approach, with a structured folder brea
 
 
 
-## App Preview Video
+## App Preview Video for Dark & Light Theme
+
+https://github.com/vksep07/triangle_note/assets/16042343/1d9a99fc-8eaf-4a0b-a390-9afaf8b51256
 
 
-https://github.com/vksep07/plateron_assignment/assets/16042343/5b5bdb73-2648-4b91-acdd-30cf6a86af28
 
 
 ## Requirements
