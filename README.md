@@ -8,6 +8,8 @@ The project employs a clean architecture approach, with a structured folder brea
 
 ## Logo
 
+<img src="https://github.com/vksep07/triangle_note/assets/16042343/cb92a678-38e7-4f7b-9891-0394e5aa34b0" alt="Triangle Note Logo" width="300" style="filter: brightness(0) saturate(100%) invert(100%) grayscale(100%);" />
+
 <img src="https://github.com/vksep07/triangle_note/assets/16042343/b5c430b2-598b-4688-90f1-6418fac785f6" alt="Triangle Note Logo" width="300" style="filter: brightness(0) saturate(100%) invert(100%) grayscale(100%);" />
 
 
