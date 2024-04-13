@@ -47,6 +47,7 @@ The project employs a clean architecture approach, with a structured folder brea
 https://github.com/vksep07/triangle_note/assets/16042343/1d9a99fc-8eaf-4a0b-a390-9afaf8b51256
 
 
+https://github.com/vksep07/triangle_note/assets/16042343/1abf463a-9abd-4423-afa6-f8e0bf746927
 
 
 ## Requirements
